@@ -43,7 +43,15 @@ function initContent() {
 function setMSPage(requestedPage) {
 
 	var targetPage = ((typeof (requestedPage) !== "undefined" && requestedPage !== null) ? requestedPage : "home");
-	var contentURL = prefixURL + targetPage + '.html';
+	var aHREF = targetPage;
+	var aHASH = '';
+	var arrHREF;
+	if (aHREF.indexOf('#') >= 0) {
+		arrHREF = aHREF.split('#');
+		aHREF = arrHREF[0];
+		aHASH = '#' + arrHREF[1];
+	}
+	var contentURL = prefixURL + aHREF + '.html' + aHASH;
 
 	// analytics event
 	createGAEvent(projectName, "Load-Page", targetPage, inSandbox);
